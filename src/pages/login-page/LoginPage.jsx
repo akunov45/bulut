@@ -23,7 +23,7 @@ const LoginPage = () => {
 
     try {
       await authService.signIn(email, password);
-      // navigate('/');
+      navigate('/admin/add-product');
     } catch (err) {
       console.error('Ошибка авторизации:', err);
       setError(err.message);
