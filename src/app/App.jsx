@@ -17,7 +17,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/test" element={<Cards />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/admin/login" element={<LoginPage />} />
           <Route
           path="/admin/add-product"
             element={isAuthenticated ? <AddProduct /> : <Navigate to="/admin/login" />}
