@@ -6,41 +6,41 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [error, setError] = useState(null);
-  
+
   const handleChange = ({ target: { name, value } }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const { email, password } = formData;
     if (!email.trim() || !password.trim()) {
       setError('Пожалуйста, заполните все поля.');
       setTimeout(() => setError(null), 3000);
       return;
     }
-    
+
     try {
       await authService.signIn(email, password);
-      navigate('/');
+      // navigate('/');
     } catch (err) {
       console.error('Ошибка авторизации:', err);
       setError(err.message);
     }
   };
-  
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
         <h2 className="text-2xl font-bold text-center mb-6">Вход в аккаунт</h2>
-        
+
         {error && (
           <div className="mb-4 p-3 text-red-700 bg-red-100 border border-red-300 rounded">
             {error}
           </div>
         )}
-        
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <InputField
             label="Email"
@@ -63,7 +63,7 @@ const LoginPage = () => {
             Войти
           </button>
         </form>
-        
+
         <p className="mt-4 text-sm text-center text-gray-600">
           Нет аккаунта?{' '}
           <a href="/register" className="text-blue-500 hover:underline">
